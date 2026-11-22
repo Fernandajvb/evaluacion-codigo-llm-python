@@ -1,0 +1,16 @@
+﻿[
+    {
+        "file":  "securityeval_v2_1.jsonl",
+        "source_url":  "https://raw.githubusercontent.com/s2e-lab/SecurityEval/v2.1/dataset.jsonl",
+        "description":  "SecurityEval v2.1 prompts for Python security tasks",
+        "sha256":  "E46918698E190E481399C51330C60049ED34A38CCC2546C9A81F0C84D446335F",
+        "downloaded_at_utc":  "2026-11-22T00:07:16.4099936Z"
+    },
+    {
+        "file":  "mbpp_sanitized.json",
+        "source_url":  "https://raw.githubusercontent.com/google-research/google-research/master/mbpp/sanitized-mbpp.json",
+        "description":  "MBPP sanitized Python programming tasks",
+        "sha256":  "CA95DEAA9A01EF0A6F439F88BCF0DD3DB3563D22F22AAD6CAE04EBB9A8D8C8E9",
+        "downloaded_at_utc":  "2026-11-22T00:07:16.8877894Z"
+    }
+]

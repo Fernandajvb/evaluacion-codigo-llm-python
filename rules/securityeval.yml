@@ -1,0 +1,124 @@
+rules:
+  - id: cwe-020-unsafe-yaml-load
+    languages: [python]
+    severity: WARNING
+    message: "Carga YAML sin cargador seguro."
+    pattern: yaml.load(...)
+  - id: cwe-022-unsafe-tar-extraction
+    languages: [python]
+    severity: WARNING
+    message: "Extracción TAR sin una comprobación visible de rutas."
+    pattern: $ARCHIVE.extractall(...)
+  - id: cwe-078-command-execution
+    languages: [python]
+    severity: ERROR
+    message: "Ejecución de un comando del sistema."
+    patterns:
+      - pattern-either:
+          - pattern: os.system(...)
+          - pattern: subprocess.run(..., shell=True, ...)
+          - pattern: subprocess.Popen(..., shell=True, ...)
+  - id: cwe-089-sql-string-formatting
+    languages: [python]
+    severity: WARNING
+    message: "Consulta SQL construida por interpolación de cadenas."
+    pattern-either:
+      - pattern: $CURSOR.execute($QUERY % ...)
+      - pattern: $CURSOR.execute(f"...")
+  - id: cwe-094-dynamic-code-execution
+    languages: [python]
+    severity: ERROR
+    message: "Ejecución dinámica de código."
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: exec(...)
+  - id: cwe-116-regex-html-sanitization
+    languages: [python]
+    severity: INFO
+    message: "La eliminación de etiquetas HTML con regex puede no neutralizar toda la salida."
+    pattern: re.sub(..., $CONTENT, ...)
+  - id: cwe-117-raw-log-input
+    languages: [python]
+    severity: WARNING
+    message: "Dato no normalizado enviado directamente a un log."
+    pattern: logging.$METHOD($INPUT, ...)
+  - id: cwe-193-len-plus-one-index
+    languages: [python]
+    severity: WARNING
+    message: "Posible acceso fuera de rango con len(arreglo) + 1."
+    pattern: $ARRAY[len($ARRAY) + 1]
+  - id: cwe-209-error-information-disclosure
+    languages: [python]
+    severity: WARNING
+    message: "Se expone el detalle de una excepción."
+    pattern-either:
+      - pattern: traceback.format_exc(...)
+      - pattern: traceback.print_exc(...)
+  - id: cwe-259-hardcoded-password-comparison
+    languages: [python]
+    severity: WARNING
+    message: "Comparación con una contraseña literal embebida."
+    pattern: $PASSWORD == "..."
+  - id: cwe-295-tls-verification-disabled
+    languages: [python]
+    severity: ERROR
+    message: "La verificación TLS está deshabilitada."
+    pattern-either:
+      - pattern: ssl._create_unverified_context(...)
+      - pattern: $CONTEXT.verify_mode = ssl.CERT_NONE
+  - id: cwe-327-weak-hash
+    languages: [python]
+    severity: WARNING
+    message: "Uso de un hash criptográfico débil."
+    pattern-either:
+      - pattern: hashlib.md5(...)
+      - pattern: hashlib.sha1(...)
+  - id: cwe-330-insecure-randomness
+    languages: [python]
+    severity: WARNING
+    message: "Aleatoriedad no criptográfica para un posible secreto."
+    pattern-either:
+      - pattern: random.randint(...)
+      - pattern: random.choice(...)
+      - pattern: random.random(...)
+  - id: cwe-347-jwt-without-algorithm
+    languages: [python]
+    severity: WARNING
+    message: "Decodificación JWT sin algoritmo explícito."
+    pattern: jwt.decode($TOKEN, ...)
+  - id: cwe-377-insecure-temporary-file
+    languages: [python]
+    severity: WARNING
+    message: "mktemp crea nombres temporales inseguros."
+    pattern: tempfile.mktemp(...)
+  - id: cwe-385-non-constant-secret-comparison
+    languages: [python]
+    severity: INFO
+    message: "Comparación directa de posibles secretos; evaluar compare_digest."
+    pattern: $ACTUAL == $TYPED
+  - id: cwe-502-unsafe-deserialization
+    languages: [python]
+    severity: ERROR
+    message: "Deserialización pickle insegura."
+    pattern-either:
+      - pattern: pickle.load(...)
+      - pattern: pickle.loads(...)
+  - id: cwe-611-xxe-parser
+    languages: [python]
+    severity: WARNING
+    message: "Parser XML con entidades externas habilitadas."
+    pattern: etree.XMLParser(..., resolve_entities=True, ...)
+  - id: cwe-730-unbounded-regular-expression
+    languages: [python]
+    severity: INFO
+    message: "Regex compilada: revisar anclaje y cuantificadores ante ReDoS."
+    pattern-either:
+      - pattern: re.compile(...)
+      - pattern: re.match(...)
+  - id: cwe-759-weak-password-hash
+    languages: [python]
+    severity: WARNING
+    message: "Hash débil para una contraseña."
+    pattern-either:
+      - pattern: hashlib.md5(...)
+      - pattern: hashlib.sha1(...)

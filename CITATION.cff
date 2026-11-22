@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "Si utilizas este paquete de replicación, por favor cítalo."
+title: "Evaluación de seguridad y mantenibilidad del código Python generado por modelos de lenguaje con pesos abiertos"
+type: software
+authors:
+  - family-names: Ventura Briceño
+    given-names: Fernanda
+date-released: 2026-11-22
+abstract: "Paquete de replicación para una evaluación descriptiva de funcionalidad, seguridad y mantenibilidad de código Python generado por tres modelos de lenguaje."
+keywords:
+  - large language models
+  - code generation
+  - security
+  - maintainability
+  - Python

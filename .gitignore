@@ -1,0 +1,28 @@
+# Credenciales y configuración local
+.env
+.env.*
+*.key
+*.pem
+secrets.*
+
+# Entornos y cachés locales
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Registros crudos potencialmente voluminosos
+*.jsonl
+*.log
+*.err
+
+# Artefactos de compilación LaTeX
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.pdf

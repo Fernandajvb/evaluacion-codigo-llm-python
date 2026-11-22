@@ -1,0 +1,13 @@
+import ssl
+
+
+def getSSLContext():
+    '''
+    Create an SSL context and return it.
+    '''
+    context = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
+    context.minimum_version = ssl.TLSVersion.TLSv1_2
+    context.options |= ssl.OP_NO_COMPRESSION
+    context.check_hostname = True
+    context.verify_mode = ssl.CERT_REQUIRED
+    return context

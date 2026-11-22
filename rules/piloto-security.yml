@@ -1,0 +1,10 @@
+rules:
+  - id: insecure-session-randomness
+    languages: [python]
+    severity: WARNING
+    message: Session identifiers should use the secrets module instead of random.
+    patterns:
+      - pattern-inside: |
+          def getSessionID(...):
+            ...
+      - pattern: random.$METHOD(...)
